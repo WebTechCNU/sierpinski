@@ -1,3 +1,5 @@
+let selection = document.getElementById("dropDownIterations");
+
 function drawSquere(x,y,r){
     const canvas = document.getElementById("canvas");
     if (canvas.getContext) {
@@ -8,7 +10,8 @@ function drawSquere(x,y,r){
 }
 
 function drawSegment(x, y, r ,n){
-    if(n > 6){
+    let iterations = selection.value;
+    if(n > iterations){
         return;
     }
 
@@ -25,7 +28,13 @@ function drawSegment(x, y, r ,n){
 
 function draw() {
     let r = 600;
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "black";
     drawSegment(0, 0, r, 0);
 }
 
 draw();
+selection.onchange = draw;
